@@ -41,7 +41,7 @@ export const authServiceLogin = async (data) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    throw new Errro("User Credentials Invalid");
+    throw new Error("User Credentials Invalid");
   }
 
   const matchPassword = await bcrypt.compare(password, user.password);

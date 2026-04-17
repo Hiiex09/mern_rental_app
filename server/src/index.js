@@ -3,6 +3,7 @@ import "dotenv/config";
 import cookieParser from "cookie-parser";
 import { connectDatabase } from "./config/db.js";
 import authRoutes from "./modules/auth/auth.route.js";
+import propertyRoutes from "./modules/property/property.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,7 +11,8 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/api/v1", authRoutes);
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/property", propertyRoutes);
 
 const startServer = async () => {
   await connectDatabase();
