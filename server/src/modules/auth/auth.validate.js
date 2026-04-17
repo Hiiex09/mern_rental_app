@@ -1,4 +1,4 @@
-import z from "zod";
+import z, { email } from "zod";
 
 export const signUpSchema = z.object({
   firstName: z.string().min(1),
@@ -9,4 +9,9 @@ export const signUpSchema = z.object({
   password: z.string().min(8),
   profile: z.string().optional(),
   role: z.enum(["TENANT", "OWNER", "ADMIN"]).optional().default("TENANT"),
+});
+
+export const loginSchema = z.object({
+  email: z.string(),
+  password: z.string(),
 });
