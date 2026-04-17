@@ -34,3 +34,20 @@ export const authServiceSignUp = async (data) => {
 
   return newUser.save();
 };
+
+export const authServiceLogin = async (data) => {
+  const { email, password } = data;
+
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    throw new Errro("User Credentials Invalid");
+  }
+
+  const matchPassword = await bcrypt.compare(password, user.password);
+  if (!matchPassword) {
+    throw new Error("User Credentials Invalid");
+  }
+
+  return user;
+};
