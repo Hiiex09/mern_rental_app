@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import { connectDatabase } from "./config/db.js";
 import authRoutes from "./modules/auth/auth.route.js";
 import propertyRoutes from "./modules/property/property.route.js";
+import unitsRoutes from "./modules/units/units.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,7 @@ app.use(cookieParser());
 
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/property", propertyRoutes);
+app.use("/api/v1/units", unitsRoutes);
 
 const startServer = async () => {
   await connectDatabase();
