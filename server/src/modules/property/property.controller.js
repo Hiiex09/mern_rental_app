@@ -1,7 +1,8 @@
 import { createPropertyServices } from "./services/createProperty.services.js";
+import { deletePropertyByIdService } from "./services/deletePropertyById.services.js";
 import { getAllPropertyServices } from "./services/getProperty.services.js";
 import { getPropertyServicesById } from "./services/getPropertyById.services.js";
-import { updatePropertyServices } from "./services/updatePropert.service.js";
+import { updatePropertyServices } from "./services/updateProperty.service.js";
 
 export const create_property = async (req, res) => {
   try {
@@ -82,6 +83,25 @@ export const update_property = async (req, res) => {
     }
 
     console.error("Error in updating data:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+export const delete_property = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deletedProperty = await deletePropertyByIdService(id);
+
+    if (!deletedProperty) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    res.status(200).json({
+      message: "Property deleted successfully",
+      data: deletedProperty,
+    });
+  } catch (error) {
+    console.error("Error in deleting property:", error);
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
