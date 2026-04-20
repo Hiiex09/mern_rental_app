@@ -6,6 +6,7 @@ import {
   get_properties_by_id,
   update_property,
   delete_property,
+  browseAvailableProperties,
 } from "./property.controller.js";
 import { protectRoute } from "../../middleware/auth.middleware.js";
 import { authorizedRoles } from "../../middleware/authorizedRoles.middleware.js";
@@ -13,6 +14,9 @@ import { PropertySchema } from "./property.validation.js";
 import { uploadPropertyImages } from "../../middleware/upload.middleware.js";
 
 const router = express.Router();
+
+// PUBLIC: Browse all available properties (no auth required)
+router.get("/browse/available", browseAvailableProperties);
 
 router.get(
   "/",

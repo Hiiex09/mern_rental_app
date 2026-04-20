@@ -120,3 +120,22 @@ export const delete_property = async (req, res) => {
     return res.status(500).json({ message: "Internal Server Error" });
   }
 };
+
+export const browseAvailableProperties = async (req, res) => {
+  try {
+    const Property = (await import("./property.model.js")).default;
+
+    // Get all properties with only essential info for browsing
+    const properties = await Property.find()
+      .select("name description location images tags createdAt")
+      .lean();
+
+    return res.status(200).json({
+      message: "Available properties fetched successfully",
+      data: properties,
+    });
+  } catch (error) {
+    console.error("Error in browseAvailableProperties:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
+};

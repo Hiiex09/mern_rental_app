@@ -5,12 +5,16 @@ import {
   getUnitsByProperty,
   updateUnit,
   deleteUnit,
+  browseAvailableUnits,
 } from "./units.controller.js";
 import { uploadPropertyImages } from "../../middleware/upload.middleware.js";
 import { protectRoute } from "../../middleware/auth.middleware.js";
 import { authorizedRoles } from "../../middleware/authorizedRoles.middleware.js";
 
 const router = express.Router();
+
+// PUBLIC: Browse available units for a property (no auth required)
+router.get("/browse/:propertyId", browseAvailableUnits);
 
 // POST /units - Create a new unit
 router.post(
