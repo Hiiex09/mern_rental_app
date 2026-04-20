@@ -6,6 +6,12 @@ export const propertySchema = new Schema(
     description: { type: String, required: true },
     location: { type: String, required: true },
     tags: { type: [String], default: [] },
+    images: [
+      {
+        url: { type: String },
+        public_id: { type: String },
+      },
+    ],
     postedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",

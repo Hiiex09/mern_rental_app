@@ -10,6 +10,7 @@ import {
 import { protectRoute } from "../../middleware/auth.middleware.js";
 import { authorizedRoles } from "../../middleware/authorizedRoles.middleware.js";
 import { PropertySchema } from "./property.validation.js";
+import { uploadPropertyImages } from "../../middleware/upload.middleware.js";
 
 const router = express.Router();
 
@@ -31,14 +32,16 @@ router.post(
   "/create",
   protectRoute,
   authorizedRoles("OWNER"),
+  uploadPropertyImages.array("images", 5), // max 5 images
   validate(PropertySchema),
   create_property,
 );
 
-router.put(
+router.patch(
   "/update/:id",
   protectRoute,
   authorizedRoles("OWNER", "ADMIN"),
+  uploadPropertyImages.array("images"),
   update_property,
 );
 

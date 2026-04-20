@@ -1,3 +1,4 @@
+import { uploadToCloudinary } from "../../utils/cloudinaryUpload.js";
 import { createPropertyServices } from "./services/createProperty.services.js";
 import { deletePropertyByIdService } from "./services/deletePropertyById.services.js";
 import { getAllPropertyServices } from "./services/getProperty.services.js";
@@ -6,12 +7,26 @@ import { updatePropertyServices } from "./services/updateProperty.service.js";
 
 export const create_property = async (req, res) => {
   try {
+    let uploadedImages = [];
+
     const { firstName, lastName, _id: userId } = req.user;
 
     const fullName = `${firstName} ${lastName}`.trim();
 
+    if (req.files && req.files.length > 0) {
+      for (const file of req.files) {
+        const result = await uploadToCloudinary(file.buffer);
+
+        uploadedImages.push({
+          url: result.secure_url,
+          public_id: result.public_id,
+        });
+      }
+    }
+
     const property = await createPropertyServices({
       ...req.body,
+      images: uploadedImages,
       postedBy: userId,
     });
 
