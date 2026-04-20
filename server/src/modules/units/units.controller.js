@@ -66,3 +66,25 @@ export const deleteUnit = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const browseAvailableUnits = async (req, res) => {
+  try {
+    const { propertyId } = req.params;
+
+    // Get all available units for a property
+    const units = await Units.find({
+      propertyId,
+      status: "available",
+    })
+      .select("unitName price capacity features unitImages")
+      .populate("propertyId", "name location")
+      .lean();
+
+    res.status(200).json({
+      message: "Available units fetched successfully",
+      units,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
