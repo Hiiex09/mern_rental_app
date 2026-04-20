@@ -4,12 +4,12 @@ import User from "../modules/auth/auth.model.js";
 export const protectRoute = async (req, res, next) => {
   try {
     const access_token = req.cookies.access_token;
-    const refresh_token = req.cookies.refrsh_token;
+    const refresh_token = req.cookies.refresh_token;
 
     if (!access_token) {
       return res
         .status(401)
-        .json({ message: "Unauthorize - No Token Provided" });
+        .json({ message: "Unauthorized - No Token Provided" });
     }
 
     try {
@@ -29,7 +29,7 @@ export const protectRoute = async (req, res, next) => {
             process.env.REFRESH_TOKEN,
           );
 
-          const user = await User.findById(decodedRefresh._id).select(
+          const user = await User.findById(decodedRefresh.userId).select(
             "-password",
           );
 
@@ -40,10 +40,10 @@ export const protectRoute = async (req, res, next) => {
           const newAccessToken = jwt.sign(
             { userId: user._id },
             process.env.ACCESS_TOKEN,
-            { expiresIn: "15mins" },
+            { expiresIn: "15m" },
           );
 
-          res.cookies("access_token", newAccessToken, {
+          res.cookie("access_token", newAccessToken, {
             maxAge: 15 * 60 * 1000,
             httpOnly: true,
             sameSite: "strict",
@@ -52,11 +52,14 @@ export const protectRoute = async (req, res, next) => {
 
           req.user = user;
           next();
-        } catch (error) {
+        } catch (refreshError) {
           return res.status(401).json({ message: "Invalid refresh token" });
         }
+      } else {
+        return res
+          .status(401)
+          .json({ message: "Invalid or expired access token" });
       }
-      return res.status(401).json({ message: "Invalid access token" });
     }
   } catch (error) {
     return res.status(500).json({ message: "Internal Server Error" });
