@@ -86,17 +86,20 @@ src/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - Backend server running (see main README)
 
 ### Installation
 
 1. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 2. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -118,16 +121,19 @@ The frontend communicates with the backend API through Axios. Key integrations:
 ## 🔧 Development Guidelines
 
 ### Code Organization
+
 - **Feature-based**: Each feature is self-contained with its own API, queries, and types
 - **Separation of concerns**: Pages handle UI, features handle business logic
 - **Reusable components**: Build reusable UI components in the components folder
 
 ### State Management
+
 - **Server State**: TanStack Query for API data (properties, bookings, etc.)
 - **Client State**: Zustand for UI state and authentication
 - **Local State**: React useState for component-specific state
 
 ### Routing
+
 - **Public routes**: Accessible without authentication
 - **Protected routes**: Require authentication
 - **Role-based routes**: Different access levels for different user roles
@@ -153,26 +159,29 @@ npm run build
 
 - [Main Project README](../README.md) - Full project overview
 - [Backend API Documentation](../server/README.md) - API endpoints and setup
-import reactDom from 'eslint-plugin-react-dom'
+  import reactDom from 'eslint-plugin-react-dom'
 
 export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
+globalIgnores(['dist']),
+{
+files: ['**/*.{ts,tsx}'],
+extends: [
+// Other configs...
+// Enable lint rules for React
+reactX.configs['recommended-typescript'],
+// Enable lint rules for React DOM
+reactDom.configs.recommended,
+],
+languageOptions: {
+parserOptions: {
+project: ['./tsconfig.node.json', './tsconfig.app.json'],
+tsconfigRootDir: import.meta.dirname,
+},
+// other options...
+},
+},
 ])
+
+```
+
 ```

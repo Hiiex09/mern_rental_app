@@ -77,18 +77,21 @@ src/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js (v18 or higher)
 - MongoDB (local or cloud instance like MongoDB Atlas)
 
 ### Installation
 
 1. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 2. **Environment Setup**
    Create a `.env` file in the root directory:
+
    ```env
    PORT=5000
    MONGODB_URI=mongodb://localhost:27017/rental_app
@@ -108,11 +111,13 @@ The server will start on `http://localhost:5000`
 ## 📡 API Endpoints
 
 ### Authentication Routes (`/api/v1/auth`)
+
 - `POST /login` - User login
 - `POST /register` - User registration
 - `GET /profile` - Get current user profile (protected)
 
 ### Property Routes (`/api/v1/property`)
+
 - `GET /` - Get all properties
 - `GET /:id` - Get property by ID
 - `POST /` - Create new property (owner/admin only)
@@ -120,6 +125,7 @@ The server will start on `http://localhost:5000`
 - `DELETE /:id` - Delete property (owner/admin only)
 
 ### Units Routes (`/api/v1/units`)
+
 - `GET /` - Get all units
 - `GET /property/:propertyId` - Get units by property ID
 - `GET /:id` - Get unit by ID
@@ -128,6 +134,7 @@ The server will start on `http://localhost:5000`
 - `DELETE /:id` - Delete unit (owner/admin only)
 
 ### Booking Routes (`/api/v1/bookings`)
+
 - `GET /` - Get user's bookings (tenant) or property bookings (owner)
 - `GET /:id` - Get booking by ID
 - `POST /` - Create new booking (tenant only)
@@ -136,6 +143,7 @@ The server will start on `http://localhost:5000`
 ## 🗄️ Database Models
 
 ### User Model
+
 ```javascript
 {
   name: String,
@@ -148,6 +156,7 @@ The server will start on `http://localhost:5000`
 ```
 
 ### Property Model
+
 ```javascript
 {
   title: String,
@@ -161,6 +170,7 @@ The server will start on `http://localhost:5000`
 ```
 
 ### Unit Model
+
 ```javascript
 {
   property: ObjectId (ref: Property),
@@ -177,6 +187,7 @@ The server will start on `http://localhost:5000`
 ```
 
 ### Booking Model
+
 ```javascript
 {
   unit: ObjectId (ref: Unit),
@@ -193,11 +204,13 @@ The server will start on `http://localhost:5000`
 ## 🔐 Authentication & Authorization
 
 ### JWT Authentication
+
 - Access tokens are sent in the `Authorization` header: `Bearer <token>`
 - Tokens expire after 24 hours
 - Refresh tokens can be implemented for better security
 
 ### Role-based Access Control
+
 - **Tenant**: Can view properties, make bookings, manage own profile
 - **Owner**: Can manage own properties/units, view bookings
 - **Admin**: Full access to all resources
@@ -205,11 +218,13 @@ The server will start on `http://localhost:5000`
 ## 📁 File Uploads
 
 ### Cloudinary Integration
+
 - Images are uploaded to Cloudinary for storage
 - Supported formats: JPG, PNG, WebP
 - Automatic optimization and CDN delivery
 
 ### Upload Process
+
 1. Client sends multipart/form-data with image files
 2. Server validates file types and sizes
 3. Images are uploaded to Cloudinary
@@ -219,6 +234,7 @@ The server will start on `http://localhost:5000`
 ## 🧪 Testing the API
 
 ### Using cURL
+
 ```bash
 # Register a new user
 curl -X POST http://localhost:5000/api/v1/auth/register \
@@ -232,7 +248,9 @@ curl -X POST http://localhost:5000/api/v1/auth/login \
 ```
 
 ### Using Postman/Insomnia
+
 Import the following collection structure:
+
 - Authentication: Login/Register/Profile
 - Properties: CRUD operations
 - Units: CRUD operations
@@ -241,6 +259,7 @@ Import the following collection structure:
 ## 🚢 Deployment
 
 ### Environment Variables for Production
+
 ```env
 NODE_ENV=production
 PORT=5000
@@ -252,6 +271,7 @@ CLOUDINARY_API_SECRET=your_api_secret
 ```
 
 ### Deployment Steps
+
 1. Set up MongoDB database
 2. Configure Cloudinary account
 3. Set environment variables
@@ -261,17 +281,20 @@ CLOUDINARY_API_SECRET=your_api_secret
 ## 🔧 Development
 
 ### Available Scripts
+
 ```bash
 npm start    # Start server with nodemon (development)
 ```
 
 ### Code Style
+
 - Use ES6+ features
 - Follow RESTful conventions
 - Implement proper error handling
 - Add JSDoc comments for complex functions
 
 ### Error Handling
+
 - 400: Bad Request (validation errors)
 - 401: Unauthorized (invalid/missing token)
 - 403: Forbidden (insufficient permissions)
