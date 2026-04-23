@@ -6,9 +6,14 @@ export interface LoginData {
 }
 
 export interface RegisterData {
+    firstName: string;
+    lastName: string;
+    address: string;
+    mobile: string;
     email: string;
     password: string;
-    role: 'tenant' | 'owner' | 'admin';
+    role: 'TENANT' | 'OWNER' | 'ADMIN';
+    profile?: string;
 }
 
 export const authApi = {
@@ -19,6 +24,7 @@ export const authApi = {
                 firstName: response.data.firstName,
                 lastName: response.data.lastName,
                 role: response.data.role,
+                email: data.email,
             },
         };
     },
