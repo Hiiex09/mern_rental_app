@@ -1,9 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface User {
-  id: string;
-  email: string;
+  id?: string;
+  email?: string;
   role: "tenant" | "owner" | "admin";
+  firstName?: string;
+  lastName?: string;
 }
 
 interface AuthContextType {
@@ -31,14 +33,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      // Decode token or fetch user info
-      // For now, assume user is stored in localStorage
-      const storedUser = localStorage.getItem("user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
-      }
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
     }
   }, []);
 
@@ -49,7 +46,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem("token");
     localStorage.removeItem("user");
   };
 
