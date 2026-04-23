@@ -1,4 +1,24 @@
-const StepOne = () => {
+interface StepOneProps {
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobile: string;
+  onFirstNameChange: (value: string) => void;
+  onLastNameChange: (value: string) => void;
+  onEmailChange: (value: string) => void;
+  onMobileChange: (value: string) => void;
+}
+
+const StepOne = ({
+  firstName,
+  lastName,
+  email,
+  mobile,
+  onFirstNameChange,
+  onLastNameChange,
+  onEmailChange,
+  onMobileChange,
+}: StepOneProps) => {
   return (
     <div className="space-y-6">
       <div>
@@ -14,11 +34,15 @@ const StepOne = () => {
           type="text"
           placeholder="First Name"
           className="input input-bordered w-full"
+          value={firstName}
+          onChange={(e) => onFirstNameChange(e.target.value)}
         />
         <input
           type="text"
           placeholder="Last Name"
           className="input input-bordered w-full"
+          value={lastName}
+          onChange={(e) => onLastNameChange(e.target.value)}
         />
       </div>
 
@@ -28,6 +52,8 @@ const StepOne = () => {
           type="email"
           placeholder="Email Address"
           className="input input-bordered w-full"
+          value={email}
+          onChange={(e) => onEmailChange(e.target.value)}
         />
         <p className="text-success text-xs mt-1">Email is available</p>
       </div>
@@ -38,6 +64,8 @@ const StepOne = () => {
           type="tel"
           placeholder="Mobile Number"
           className="input input-bordered w-full"
+          value={mobile}
+          onChange={(e) => onMobileChange(e.target.value)}
         />
       </div>
     </div>

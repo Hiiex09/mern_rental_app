@@ -1,7 +1,19 @@
 import { Check, Eye } from "lucide-react";
 import { useState } from "react";
 
-const StepThree = () => {
+interface StepThreeProps {
+  password: string;
+  confirmPassword: string;
+  onPasswordChange: (value: string) => void;
+  onConfirmPasswordChange: (value: string) => void;
+}
+
+const StepThree = ({
+  password,
+  confirmPassword,
+  onPasswordChange,
+  onConfirmPasswordChange,
+}: StepThreeProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -26,6 +38,8 @@ const StepThree = () => {
             type={showPassword ? "text" : "password"}
             placeholder="Create a strong password"
             className="input input-bordered w-full pr-12"
+            value={password}
+            onChange={(e) => onPasswordChange(e.target.value)}
           />
 
           <button
@@ -49,6 +63,8 @@ const StepThree = () => {
             type={showConfirm ? "text" : "password"}
             placeholder="Repeat your password"
             className="input input-bordered w-full pr-12"
+            value={confirmPassword}
+            onChange={(e) => onConfirmPasswordChange(e.target.value)}
           />
 
           <button
