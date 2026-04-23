@@ -1,9 +1,22 @@
 import { Eye } from "lucide-react";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuthLogin } from "../../hooks/useAuth";
 
 const Login: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const { loginMutation, handleLogin } = useAuthLogin();
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      await handleLogin({ email, password });
+    } catch (error) {
+      console.error("Login failed", error);
+    }
+  };
 
   return (
     <div className="min-h-screen flex flex-col lg:flex-row bg-base-100">
@@ -50,7 +63,7 @@ const Login: React.FC = () => {
           </div>
 
           {/* FORM */}
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             {/* Email */}
             <div>
               <label className="label">
@@ -60,6 +73,9 @@ const Login: React.FC = () => {
                 type="email"
                 placeholder="name@architect.com"
                 className="input input-bordered w-full"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </div>
 
@@ -74,6 +90,9 @@ const Login: React.FC = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
                   className="input input-bordered w-full pr-10"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
                 />
 
                 <button
@@ -93,8 +112,14 @@ const Login: React.FC = () => {
             </label>
 
             {/* Button */}
-            <button className="btn btn-primary w-full">
-              Sign in to Portal
+            <button
+              className="btn btn-primary w-full"
+              type="submit"
+              disabled={loginMutation.status === "pending"}
+            >
+              {loginMutation.status === "pending"
+                ? "Signing in..."
+                : "Sign in to Portal"}
             </button>
           </form>
 
