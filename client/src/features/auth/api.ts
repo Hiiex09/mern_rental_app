@@ -13,15 +13,23 @@ export interface RegisterData {
 
 export const authApi = {
     login: async (data: LoginData) => {
-        const response = await apiClient.post('/auth/login', data);
-        return response.data;
+        const response = await apiClient.post('/login', data);
+        return {
+            user: {
+                firstName: response.data.firstName,
+                lastName: response.data.lastName,
+                role: response.data.role,
+            },
+        };
     },
     register: async (data: RegisterData) => {
-        const response = await apiClient.post('/auth/register', data);
-        return response.data;
+        const response = await apiClient.post('/signup', data);
+        return {
+            user: response.data.user,
+        };
     },
     getProfile: async () => {
-        const response = await apiClient.get('/auth/profile');
+        const response = await apiClient.get('/check-auth');
         return response.data;
     },
 };
