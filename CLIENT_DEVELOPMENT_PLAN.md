@@ -248,8 +248,108 @@ As a fullstack developer, this plan outlines the systematic development of the R
 - [ ] **Add Booking Calendar View** (`src/components/ui/BookingCalendar.tsx`)
   - Create calendar component for availability
   - Show booked dates and blocked dates
-  - Add booking conflict detection
-  - Include quick booking actions
+
+### Phase 4: Admin & Reports (Week 4)
+
+**Goal**: Deliver admin controls, reporting, and final polish
+**Primary Focus Folders**: `src/pages/admin/`, `src/features/auth/`, `src/components/ui/`, `src/components/layouts/`
+
+#### Milestone 4.1: Admin Dashboard
+
+**Focus Files**: `src/pages/admin/Dashboard.tsx`, `src/pages/admin/Users.tsx`, `src/pages/admin/Reports.tsx`
+
+- [ ] **Build Admin Dashboard Overview** (`src/pages/admin/Dashboard.tsx`)
+  - Display user counts, property counts, booking stats
+  - Add quick-action cards for admin workflows
+  - Add charts for visual insights
+
+- [ ] **Implement User Management Page** (`src/pages/admin/Users.tsx`)
+  - List all users with role and status
+  - Add admin actions (suspend, change role)
+  - Include search and filters
+  - Integrate with backend user API
+
+- [ ] **Create Reports Page** (`src/pages/admin/Reports.tsx`)
+  - Build report filters (date range, role, booking status)
+  - Display bookings, revenue, occupancy metrics
+  - Add export/download placeholders
+  - Add reusable report card components
+
+#### Milestone 4.2: App-wide Polish
+
+- [ ] **Responsive UI Review**
+  - Validate layouts across desktop/tablet/mobile
+  - Fix breakpoints for key pages
+  - Ensure sidebar and navbar behave correctly on mobile
+
+- [ ] **Accessibility Improvements**
+  - Add ARIA labels to interactive elements
+  - Ensure keyboard navigation works across forms and modals
+  - Use semantic HTML for pages and cards
+  - Add focus ring and contrast checks
+
+- [ ] **Production Readiness**
+  - Run `npm run build` and fix build issues
+  - Remove placeholder content and cleanup console logs
+  - Validate API error handling for edge cases
+  - Confirm user flows for login, booking, and management
+
+### Phase 5: Testing & Launch Preparation (Week 5)
+
+**Goal**: Validate behavior, catch regressions, and prepare for release
+
+- [ ] **Add Component Tests**
+  - Test login/register forms and auth flow components
+  - Test property card and property form components
+  - Test booking form and confirmation flow
+
+- [ ] **Add Integration Checks**
+  - Validate protected route behavior
+  - Confirm role-based pages render correctly
+  - Test API error messaging and loading states
+
+- [ ] **Deploy Preview / Demo Build**
+  - Create a staging build for review
+  - Share with stakeholders or teammates for early feedback
+  - Document any last-minute UX adjustments
+
+- [ ] **Prepare Release Checklist**
+  - Confirm backend contract and API readiness
+  - Verify production environment config
+  - Finalize UI/UX polish list
+  - Plan post-launch support items
+
+## 📌 Priority Actions for Next Update
+
+- [ ] Complete authentication flow and protected route checks
+- [ ] Build Navbar, Sidebar, and Layout wrapper
+- [ ] Start property listing and public discovery pages
+- [ ] Define API hooks for properties, units, and bookings
+
+## 📆 Estimated Rollout Schedule
+
+- **Week 1**: Authentication, navigation, landing page polish
+- **Week 2**: Property listing, owner property CRUD, search
+- **Week 3**: Unit management, tenant bookings, owner booking management
+- **Week 4**: Admin dashboard, reporting, accessibility, responsive completion
+- **Week 5**: Testing, bug fixes, staging build, release prep
+
+## 💡 Success Metrics
+
+- User can register/login and access role-based dashboards
+- Public users can search and view properties
+- Owners can manage properties and units
+- Tenants can create and view bookings
+- Admins can view users and reports
+- Critical user flows have loading states, error handling, and responsive UI
+
+---
+
+**Next Update**: After completing Phase 1 auth and layout tasks
+**Target Completion**: May 19, 2026
+
+- Add booking conflict detection
+- Include quick booking actions
 
 ### Phase 4: User Management & Admin Features (Week 4)
 
