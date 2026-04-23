@@ -1,9 +1,11 @@
 import { User } from "lucide-react";
-import { useState } from "react";
 
-const StepFour = () => {
-  const [role, setRole] = useState("tenant");
+interface StepFourProps {
+  role: "TENANT" | "OWNER";
+  onRoleChange: (value: "TENANT" | "OWNER") => void;
+}
 
+const StepFour = ({ role, onRoleChange }: StepFourProps) => {
   return (
     <div className="space-y-10">
       {/* Header */}
@@ -34,7 +36,7 @@ const StepFour = () => {
         {/* Tenant */}
         <label
           className={`card cursor-pointer border-2 p-4 transition ${
-            role === "tenant"
+            role === "TENANT"
               ? "border-primary bg-primary/10"
               : "border-base-300"
           }`}
@@ -43,8 +45,8 @@ const StepFour = () => {
             type="radio"
             name="role"
             className="hidden"
-            checked={role === "tenant"}
-            onChange={() => setRole("tenant")}
+            checked={role === "TENANT"}
+            onChange={() => onRoleChange("TENANT")}
           />
 
           <h2 className="font-bold text-lg">Tenant</h2>
@@ -54,7 +56,7 @@ const StepFour = () => {
         {/* Owner */}
         <label
           className={`card cursor-pointer border-2 p-4 transition ${
-            role === "owner"
+            role === "OWNER"
               ? "border-primary bg-primary/10"
               : "border-base-300"
           }`}
@@ -63,8 +65,8 @@ const StepFour = () => {
             type="radio"
             name="role"
             className="hidden"
-            checked={role === "owner"}
-            onChange={() => setRole("owner")}
+            checked={role === "OWNER"}
+            onChange={() => onRoleChange("OWNER")}
           />
 
           <h2 className="font-bold text-lg">Owner</h2>

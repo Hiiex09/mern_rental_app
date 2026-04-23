@@ -1,6 +1,11 @@
 import { Info } from "lucide-react";
 
-const StepTwo = () => {
+interface StepTwoProps {
+  address: string;
+  onAddressChange: (value: string) => void;
+}
+
+const StepTwo = ({ address, onAddressChange }: StepTwoProps) => {
   return (
     <div className="space-y-10">
       {/* HEADER */}
@@ -21,6 +26,8 @@ const StepTwo = () => {
         <textarea
           className="textarea textarea-bordered w-full h-32 bg-base-200"
           placeholder="Enter your full street address, apartment/suite number, city, state, and zip code..."
+          value={address}
+          onChange={(e) => onAddressChange(e.target.value)}
         />
 
         <div className="flex items-start gap-2 text-xs opacity-70">
