@@ -1,17 +1,23 @@
-import React from "react";
+import Footer from "../../components/layouts/Footer";
+import Navbar from "../../components/layouts/Navbar";
+import Cta from "../../components/sections/Cta";
+import EstateFlow from "../../components/sections/EstateFlow";
+import Hero from "../../components/sections/Hero";
+import Neighborhoods from "../../components/sections/Neighborhoods";
+import SocialProof from "../../components/sections/SocialProof";
+import Testimonial from "../../components/sections/Testimonial";
 
-const Home: React.FC = () => {
+const Home = () => {
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="hero-content text-center">
-        <div className="max-w-md">
-          <h1 className="text-5xl font-bold">Welcome to Rental App</h1>
-          <p className="py-6">
-            Find your perfect rental property or manage your properties easily.
-          </p>
-          <button className="btn btn-primary">Get Started</button>
-        </div>
-      </div>
+    <div className="bg-base-100 text-base-content">
+      <Navbar />
+      <Hero />
+      <SocialProof />
+      <EstateFlow />
+      <Neighborhoods />
+      <Testimonial />
+      <Cta />
+      <Footer />
     </div>
   );
 };
