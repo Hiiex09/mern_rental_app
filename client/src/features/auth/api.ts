@@ -34,6 +34,9 @@ export const authApi = {
             user: response.data.user,
         };
     },
+    logout: async () => {
+        await apiClient.post('/logout');
+    },
     getProfile: async () => {
         const response = await apiClient.get('/check-auth');
         return response.data;

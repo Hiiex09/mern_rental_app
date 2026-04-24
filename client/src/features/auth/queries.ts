@@ -14,6 +14,12 @@ export const useRegister = () => {
     });
 };
 
+export const useLogout = () => {
+    return useMutation({
+        mutationFn: authApi.logout,
+    });
+};
+
 export const useProfile = () => {
     return useQuery({
         queryKey: queryKeys.auth.user,
