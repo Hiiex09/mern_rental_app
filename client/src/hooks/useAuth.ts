@@ -15,7 +15,16 @@ export const useAuthLogin = () => {
     const handleLogin = async (data: LoginData) => {
         const response = await mutation.mutateAsync(data);
         login(response.user);
-        navigate("/dashboard");
+
+        // Route to appropriate dashboard based on role
+        const dashboardRoutes: Record<string, string> = {
+            TENANT: "/dashboard",
+            OWNER: "/owner/dashboard",
+            ADMIN: "/admin/dashboard",
+        };
+
+        const redirectPath = dashboardRoutes[response.user.role] || "/dashboard";
+        navigate(redirectPath);
         return response;
     };
 
@@ -33,7 +42,16 @@ export const useAuthRegister = () => {
     const handleRegister = async (data: RegisterData) => {
         const response = await mutation.mutateAsync(data);
         login(response.user);
-        navigate("/dashboard");
+
+        // Route to appropriate dashboard based on role
+        const dashboardRoutes: Record<string, string> = {
+            TENANT: "/dashboard",
+            OWNER: "/owner/dashboard",
+            ADMIN: "/admin/dashboard",
+        };
+
+        const redirectPath = dashboardRoutes[response.user.role] || "/dashboard";
+        navigate(redirectPath);
         return response;
     };
 
