@@ -3,7 +3,7 @@ import { useAuthStore } from "../store/authStore";
 
 interface RoleRouteProps {
   children: React.ReactNode;
-  allowedRoles: ("tenant" | "owner" | "admin")[];
+  allowedRoles: ("TENANT" | "OWNER" | "ADMIN")[];
 }
 
 export const RoleRoute: React.FC<RoleRouteProps> = ({

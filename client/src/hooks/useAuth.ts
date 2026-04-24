@@ -1,6 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
-import { useLogin as useLoginMutation, useRegister as useRegisterMutation } from "../features/auth/queries";
+import {
+    useLogin as useLoginMutation,
+    useRegister as useRegisterMutation,
+    useLogout as useLogoutMutation,
+} from "../features/auth/queries";
 import type { LoginData, RegisterData } from "../features/auth/api";
 
 export const useAuthLogin = () => {
@@ -36,5 +40,26 @@ export const useAuthRegister = () => {
     return {
         registerMutation: mutation,
         handleRegister,
+    };
+};
+
+export const useAuthLogout = () => {
+    const logout = useAuthStore((state) => state.logout);
+    const navigate = useNavigate();
+    const mutation = useLogoutMutation();
+
+    const handleLogout = async () => {
+        try {
+            await mutation.mutateAsync();
+        } catch (error) {
+            console.error("Logout request failed", error);
+        } finally {
+            logout();
+            navigate("/login");
+        }
+    };
+
+    return {
+        handleLogout,
     };
 };
