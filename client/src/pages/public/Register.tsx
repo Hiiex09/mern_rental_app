@@ -26,8 +26,44 @@ const Register = () => {
     role: "TENANT" as "TENANT" | "OWNER",
   });
 
+  const validateStep = () => {
+    if (step === 1) {
+      if (
+        !formData.firstName.trim() ||
+        !formData.lastName.trim() ||
+        !formData.email.trim() ||
+        !formData.mobile.trim()
+      ) {
+        setError("Please complete all required fields before continuing.");
+        return false;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        setError("Please enter a valid email address.");
+        return false;
+      }
+
+      return true;
+    }
+
+    if (step === 2) {
+      if (!formData.address.trim()) {
+        setError("Please enter your address before continuing.");
+        return false;
+      }
+      return true;
+    }
+
+    return true;
+  };
+
   const handleNext = async () => {
     setError(null);
+
+    if (!validateStep()) {
+      return;
+    }
 
     // Validation for step 3 (password step)
     if (step === 3) {
@@ -59,11 +95,11 @@ const Register = () => {
       } catch (err: any) {
         toast.error(
           err?.response?.data?.message ||
-          "Registration failed. Please try again.",
+            "Registration failed. Please try again.",
         );
         setError(
           err?.response?.data?.message ||
-          "Registration failed. Please try again.",
+            "Registration failed. Please try again.",
         );
       }
       return;
