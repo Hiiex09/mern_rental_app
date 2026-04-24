@@ -38,7 +38,7 @@ export const router = createBrowserRouter([
     path: "/dashboard",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["tenant", "owner", "admin"]}>
+        <RoleRoute allowedRoles={["TENANT", "OWNER", "ADMIN"]}>
           <TenantDashboard />
         </RoleRoute>
       </ProtectedRoute>
@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
     path: "/tenant/bookings",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["tenant"]}>
+        <RoleRoute allowedRoles={["TENANT"]}>
           <TenantBookings />
         </RoleRoute>
       </ProtectedRoute>
@@ -58,7 +58,7 @@ export const router = createBrowserRouter([
     path: "/tenant/profile",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["tenant"]}>
+        <RoleRoute allowedRoles={["TENANT"]}>
           <TenantProfile />
         </RoleRoute>
       </ProtectedRoute>
@@ -68,7 +68,7 @@ export const router = createBrowserRouter([
     path: "/owner/dashboard",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["owner"]}>
+        <RoleRoute allowedRoles={["OWNER"]}>
           <OwnerDashboard />
         </RoleRoute>
       </ProtectedRoute>
@@ -78,7 +78,7 @@ export const router = createBrowserRouter([
     path: "/owner/properties",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["owner"]}>
+        <RoleRoute allowedRoles={["OWNER"]}>
           <OwnerProperties />
         </RoleRoute>
       </ProtectedRoute>
@@ -88,7 +88,7 @@ export const router = createBrowserRouter([
     path: "/owner/units",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["owner"]}>
+        <RoleRoute allowedRoles={["OWNER"]}>
           <OwnerUnits />
         </RoleRoute>
       </ProtectedRoute>
@@ -98,7 +98,7 @@ export const router = createBrowserRouter([
     path: "/owner/bookings",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["owner"]}>
+        <RoleRoute allowedRoles={["OWNER"]}>
           <OwnerBookings />
         </RoleRoute>
       </ProtectedRoute>
@@ -108,7 +108,7 @@ export const router = createBrowserRouter([
     path: "/admin/dashboard",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["admin"]}>
+        <RoleRoute allowedRoles={["ADMIN"]}>
           <AdminDashboard />
         </RoleRoute>
       </ProtectedRoute>
@@ -118,7 +118,7 @@ export const router = createBrowserRouter([
     path: "/admin/users",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["admin"]}>
+        <RoleRoute allowedRoles={["ADMIN"]}>
           <AdminUsers />
         </RoleRoute>
       </ProtectedRoute>
@@ -128,7 +128,7 @@ export const router = createBrowserRouter([
     path: "/admin/properties",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["admin"]}>
+        <RoleRoute allowedRoles={["ADMIN"]}>
           <AdminProperties />
         </RoleRoute>
       </ProtectedRoute>
@@ -138,7 +138,7 @@ export const router = createBrowserRouter([
     path: "/admin/reports",
     element: (
       <ProtectedRoute>
-        <RoleRoute allowedRoles={["admin"]}>
+        <RoleRoute allowedRoles={["ADMIN"]}>
           <AdminReports />
         </RoleRoute>
       </ProtectedRoute>
