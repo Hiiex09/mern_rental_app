@@ -18,7 +18,7 @@ export interface RegisterData {
 
 export const authApi = {
     login: async (data: LoginData) => {
-        const response = await apiClient.post('/login', data);
+        const response = await apiClient.post('/auth/login', data);
         return {
             user: {
                 firstName: response.data.firstName,
@@ -29,16 +29,16 @@ export const authApi = {
         };
     },
     register: async (data: RegisterData) => {
-        const response = await apiClient.post('/signup', data);
+        const response = await apiClient.post('/auth/signup', data);
         return {
             user: response.data.user,
         };
     },
     logout: async () => {
-        await apiClient.post('/logout');
+        await apiClient.post('/auth/logout');
     },
     getProfile: async () => {
-        const response = await apiClient.get('/check-auth');
+        const response = await apiClient.get('/auth/check-auth');
         return response.data;
     },
 };
